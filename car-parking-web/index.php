@@ -12,8 +12,7 @@ $lastUpdated = isset($result['updated_at']) ? $result['updated_at'] : 'N/A';
 
 // Parking lot has 10 spaces
 $totalSpaces = 10;
-$space_remaning = $totalSpaces - $carCount;
-$isFull = ($carCount >= $totalSpaces);
+$space_remaning = $totalSpaces - $result['car_count'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,12 +72,9 @@ $isFull = ($carCount >= $totalSpaces);
             <div class="col-md-6">
                 <div class="card status-card <?php echo $isFull ? 'full' : 'open'; ?>">
                     <div class="card-body text-center">
-                        <h2 class="card-title">Current Status</h2>
-                        <div class="display-1 mb-3"><?php echo htmlspecialchars($carCount); ?></div>
-                        <p class="gate-status">
-                            Gate Status: <?php echo $isFull ? 'Closed' : 'Open'; ?>
-                        </p>
-                        <?php if($isFull): ?>
+                        <h2 class="card-title">Available Space</h2>
+                        <div class="display-1 mb-3"><?php echo htmlspecialchars($space_remaning); ?></div>
+                        <?php if($space_remaning == 0): ?>
                             <h2>Parking space is full.</h2>
                         <?php endif; ?>
                     </div>
